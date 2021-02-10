@@ -1,0 +1,6 @@
+name: MyVoteParty
+version: ${project.version}
+main: ro.deiutzblaxo.voteparty.Main
+api-version: 1.16
+depend: [ PlaceholderAPI, Votifier ]
+authors: [ Deiutz ]
