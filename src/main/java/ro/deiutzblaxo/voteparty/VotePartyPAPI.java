@@ -9,8 +9,7 @@ import java.util.Locale;
 
 
 public class VotePartyPAPI extends PlaceholderExpansion {
-    public VotePartyPAPI(Plugin plugin) {
-    }
+
 
 
     @Override
@@ -22,7 +21,7 @@ public class VotePartyPAPI extends PlaceholderExpansion {
         }else if(params.equalsIgnoreCase("VOTE_REMAIN")){
             return String.valueOf(Cache.MAX_VOTE - Cache.VOTE_NOW);
         }else if (params.equalsIgnoreCase("VOTE_BY_PLAYER")) {
-                return Cache.VOTES.containsKey(p.getName().toLowerCase(Locale.ROOT)) ? String.valueOf(Cache.VOTES.get(p.getName().toLowerCase(Locale.ROOT))) : 0+"";
+            return Cache.VOTES.containsKey(p.getName().toLowerCase(Locale.ROOT)) ? String.valueOf(Cache.VOTES.get(p.getName().toLowerCase(Locale.ROOT))) : 0+"";
         }
 
 

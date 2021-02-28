@@ -34,6 +34,7 @@ public class ConfigManager {
             config.set("player-vote","{player_name} voted our server on {site}");
             config.set("commands", new String[]{"bcast vote1", "bcast vote2"});
             config.set("commands-vote",new String[]{"bcast vote1", "bcast {player_name}"});
+            config.set("vote-remainder", "&8&l[&c&l!&8&l]Nu uita sa ne votezi! Ai momentan &c{voturi} &7voturi.");
             try {
                 config.save(configFile);
             } catch (IOException e) {

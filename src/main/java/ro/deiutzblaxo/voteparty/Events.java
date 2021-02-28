@@ -31,9 +31,9 @@ public class Events implements Listener {
     @EventHandler
     public void onVote(VotifierEvent event){
         if(Bukkit.getOnlinePlayers().stream().filter(player -> event.getVote().getUsername().equalsIgnoreCase(player.getName())).count() == 0) {
-
             return;
         }
+
         String pName = event.getVote().getUsername().toLowerCase(Locale.ROOT);
         Cache.VOTES.put(pName , Cache.VOTES.containsKey(pName) ? Cache.VOTES.get(pName) +1 : 1);
         Cache.VOTE_NOW++;

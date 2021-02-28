@@ -4,14 +4,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JP {
     BukkitTask taskID;
     int vote = 10;
-    List<String> commands;
+
     public JP(){
-         commands= Main.cm.getConfig().getStringList("commands");//TODO
+        Main.cm.loadConfig();
+         Cache.PARTY_VOTE_COMMAND = (ArrayList<String>) Main.cm.getConfig().getStringList("commands");//TODO
     }
 
     public void startParty(){
@@ -23,9 +25,12 @@ public class JP {
 
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',
                     Main.cm.getConfig().getString("vp-time-ramain").replace("{time}", String.valueOf(vote))));//TODO
-            if(vote == 0) {
+            if(vote <= 0) {
 
-                Cache.PARTY_VOTE_COMMAND.forEach(command ->{Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command);});
+                Cache.PARTY_VOTE_COMMAND.forEach(command ->{Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command);
+                System.out.println(command);
+
+                });
                 Bukkit.getScheduler().cancelTask(taskID.getTaskId());
                 vote = 10;
             }

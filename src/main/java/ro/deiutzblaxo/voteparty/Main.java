@@ -1,6 +1,8 @@
 package ro.deiutzblaxo.voteparty;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,7 +32,7 @@ public final class Main extends JavaPlugin {
 
         Cache.VOTE_COMMAND = cm.getConfig().getStringList("commands-vote");
 
-        (new VotePartyPAPI((Plugin)this)).register();
+        new VotePartyPAPI().register();
         Bukkit.getPluginManager().registerEvents(new Events() , this);
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
                     @Override
@@ -46,6 +48,15 @@ public final class Main extends JavaPlugin {
                     }
                 }
         ,1800*20,1800*20);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
+            @Override
+            public void run() {
+                for(Player player : Bukkit.getOnlinePlayers())
+               player.sendMessage(ChatColor.translateAlternateColorCodes('&',cm.config.getString("vote-remainder")
+                       .replace("{voturi}",Cache.VOTES.containsKey(player.getName().toLowerCase(Locale.ROOT)) ?
+                               String.valueOf(Cache.VOTES.get(player.getName().toLowerCase(Locale.ROOT))) : 0+"")));
+            }
+        },300L*20L,300L*20L);
     }
 
     @Override
